@@ -18,4 +18,5 @@
     <string name="quotes">Quotes</string>
     <string name="delete">Delete</string>
     <string name="add_new_book">Add new book</string>
+    <string name="add_quote">Add quote</string>
 </resources>

@@ -7,22 +7,22 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BooksAdapter(private val books: List<String>) : RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
+class QuotesAdapter(private val quotes: List<String>) : RecyclerView.Adapter<QuotesAdapter.ViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context: Context = parent.context
         val inflater = LayoutInflater.from(context)
-        val bookView = inflater.inflate(R.layout.book_entry, parent, false)
-        return ViewHolder(bookView)
+        val quoteView = inflater.inflate(R.layout.quote_entry, parent, false)
+        return ViewHolder(quoteView)
     }
 
     override fun getItemCount(): Int {
-        return books.size
+        return quotes.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val book: String = books[position]
-        val textView : TextView = holder.itemView.findViewById(R.id.tvTitle)
-        textView.text = book
+        val quote: String = quotes[position]
+        val textView : TextView = holder.itemView.findViewById(R.id.tvQuote)
+        textView.text = quote
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
