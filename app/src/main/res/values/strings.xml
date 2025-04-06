@@ -19,4 +19,20 @@
     <string name="delete">Delete</string>
     <string name="add_new_book">Add new book</string>
     <string name="add_quote">Add quote</string>
+    <string name="enter_book_title">Enter book title</string>
+    <string name="enter_book_author">Enter book author</string>
+    <string name="choose_book_status">Choose book status</string>
+    <string name="choose_end_date">Choose end date</string>
+    <string name="choose_start_date">Choose start date</string>
+    <string name="enter_book_rating">Enter book rating</string>
+    <string name="enter_cost">Enter boos cost</string>
+    <string name="enter_fav_character">Enter fav. character</string>
+    <string name="add_button">Add</string>
+    <string-array name="book_status">
+        <item>New</item>
+        <item>Reading</item>
+        <item>Finished</item>
+        <item>Wish list</item>
+        <item>Dropped</item>
+    </string-array>
 </resources>
