@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BooksAdapter(private val books: List<String>) : RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
+class BooksAdapter(private val books: List<BookData>) : RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context: Context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -20,9 +20,9 @@ class BooksAdapter(private val books: List<String>) : RecyclerView.Adapter<Books
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val book: String = books[position]
+        val book: BookData = books[position]
         val textView : TextView = holder.itemView.findViewById(R.id.tvTitle)
-        textView.text = book
+        textView.text = book.title
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
