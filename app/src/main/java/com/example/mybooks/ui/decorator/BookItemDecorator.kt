@@ -1,4 +1,4 @@
-package com.example.mybooks
+package com.example.mybooks.ui.decorator
 
 import android.graphics.Rect
 import android.view.View
