@@ -1,16 +1,17 @@
-package com.example.mybooks
+package com.example.mybooks.ui
 
-import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
-import android.view.Window
 import android.widget.Button
-import android.widget.ImageButton
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mybooks.R
+import com.example.mybooks.database.model.BookData
+import com.example.mybooks.ui.adapter.BooksAdapter
+import com.example.mybooks.ui.decorator.BookItemDecorator
+import com.example.mybooks.viewmodel.BooksViewModel
+import java.util.Date
 
 
 class BooksActivity : AppCompatActivity() {
@@ -21,6 +22,8 @@ class BooksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
+        val bookVieModel = ViewModelProvider(this)[BooksViewModel::class.java]
+
         val recyclerView: RecyclerView = findViewById(R.id.rvAllBooks)
         books = emptyList()
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -28,18 +31,13 @@ class BooksActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(bookItemDecorator)
         recyclerView.adapter = BooksAdapter(books)
 
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.book_dialog)
+        bookVieModel.books.observe(this) {
+            (recyclerView.adapter as BooksAdapter).updateDataSet(it)
+        }
 
-        val btnAddBook: Button = findViewById(R.id.btnAddBook)
+        val btnAddBook = findViewById<Button>(R.id.btnAddBook)
         btnAddBook.setOnClickListener {
-            dialog.show()
+            bookVieModel.addBook(BookData(0, "test", "test", "test", Date().toString(), Date().toString(), 0, "test", 0f, false, false))
         }
-
-        val btnClose: ImageButton = dialog.findViewById(R.id.ibClose)
-        btnClose.setOnClickListener {
-            dialog.dismiss()
-        }
-
     }
 }

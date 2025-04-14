@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/activity_background"
-    tools:context=".QuotesActivity">
+    tools:context=".ui.QuotesActivity">
 
     <TextView
         android:id="@+id/tvQuotes"
@@ -31,7 +31,8 @@
         android:background="#00FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_arrow_icon" />
+        app:srcCompat="@drawable/back_arrow_icon"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnAddQuote"

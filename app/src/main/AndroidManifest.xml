@@ -13,19 +13,19 @@
         android:theme="@style/Theme.MyBooks"
         tools:targetApi="31">
         <activity
-            android:name=".QuotesActivity"
+            android:name=".ui.QuotesActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".BookDetailsActivity"
+            android:name=".ui.BookDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".BooksActivity"
+            android:name=".ui.BooksActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
