@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.MyBooks" parent="Base.Theme.MyBooks" />
+
+    <style name="DialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">99%</item>
+        <item name="android:windowMinWidthMinor">99%</item>
+    </style>
+
 </resources>

@@ -10,8 +10,9 @@ import com.example.mybooks.R
 import com.example.mybooks.database.model.BookData
 import com.example.mybooks.ui.adapter.BooksAdapter
 import com.example.mybooks.ui.decorator.BookItemDecorator
+import com.example.mybooks.ui.dialog.BookDialogListener
+import com.example.mybooks.ui.dialog.BookInputDialog
 import com.example.mybooks.viewmodel.BooksViewModel
-import java.util.Date
 
 
 class BooksActivity : AppCompatActivity() {
@@ -37,7 +38,12 @@ class BooksActivity : AppCompatActivity() {
 
         val btnAddBook = findViewById<Button>(R.id.btnAddBook)
         btnAddBook.setOnClickListener {
-            bookVieModel.addBook(BookData(0, "test", "test", "test", Date().toString(), Date().toString(), 0, "test", 0f, false, false))
+            BookInputDialog(this,
+                object : BookDialogListener {
+                override fun onAddButtonClicked(bookData: BookData) {
+                    bookVieModel.addBook(bookData)
+                }
+            }).show()
         }
     }
 }
