@@ -15,80 +15,98 @@ import com.example.mybooks.R
 import com.example.mybooks.database.model.BookData
 import com.google.android.material.textfield.TextInputLayout
 
-class BookInputDialog(context: Context, private var addBookDialogListener: BookDialogListener) : Dialog(context, R.style.DialogStyle) {
-    private var statusValue= ""
-    private lateinit var btnAdd: Button
-    private lateinit var btnClose: ImageButton
-    private lateinit var title: TextInputLayout
-    private lateinit var author: TextInputLayout
-    private lateinit var status: Spinner
-    private lateinit var startDate: ImageButton
-    private lateinit var endDate: ImageButton
-    private lateinit var rating: TextInputLayout
-    private lateinit var favChar: TextInputLayout
-    private lateinit var cost: TextInputLayout
+class BookInputDialog(context: Context,
+                      private val isEdit: Boolean,
+                      private val bookData: BookData?,
+                      private var addBookDialogListener: BookDialogListener
+) : Dialog(context, R.style.DialogStyle) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.book_dialog)
 
-        initViews()
+        var statusValue= ""
 
+        // Initialize views
+        val btnAdd: Button = findViewById(R.id.btnAddEditBook)
+        val btnClose: ImageButton = findViewById(R.id.ibCloseBookDialog)
+        val title: TextInputLayout = findViewById(R.id.tiTitle)
+        val author: TextInputLayout = findViewById(R.id.tiAuthor)
+        val status: Spinner = findViewById(R.id.spStatus)
+        val startDate: ImageButton = findViewById(R.id.ibStartDate)
+        val endDate: ImageButton = findViewById(R.id.ibEndDate)
+        val rating: TextInputLayout = findViewById(R.id.tiRating)
+        val favChar: TextInputLayout = findViewById(R.id.tiFavChar)
+        val cost: TextInputLayout = findViewById(R.id.tiCost)
+
+        // Set up the spinner
         ArrayAdapter.createFromResource(
             this.context,
             R.array.book_status,
             R.layout.spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears.
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-            // Apply the adapter to the spinner.
             status.adapter = adapter
         }
 
+        // Set up the spinner listener
         status.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // Handle the selected item
                 statusValue = parent?.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Use Personal in case of no selection
                 statusValue = "New"
             }
         }
 
+        // Set up the close button
         btnClose.setOnClickListener{
             dismiss()
         }
 
+        // Set up Edit Dialog
+        if (isEdit) {
+            // Initialize views with book data
+            btnAdd.text = context.resources.getString(R.string.edit_button)
+            title.editText?.setText(bookData?.title)
+            author.editText?.setText(bookData?.author)
+
+            // Set up the spinner for Edit
+            val typeOptions = context.resources.getStringArray(R.array.book_status)
+            val statusValue = bookData?.status
+            when(val typeIndex = typeOptions.indexOf(statusValue)) {
+                -1 -> status.setSelection(typeOptions.indexOf("New"))
+                else -> status.setSelection(typeIndex)
+            }
+
+            rating.editText?.setText(bookData?.rating.toString())
+            favChar.editText?.setText(bookData?.favChar)
+            cost.editText?.setText(bookData?.cost.toString())
+
+        }
+
+        // Set up Add/Edit Button
         btnAdd.setOnClickListener{
+            // Get the values from the input fields
             val titleValue = title.editText?.text.toString()
             val authorValue = author.editText?.text.toString()
+            val ratingValue = rating.editText?.text.toString()
+            val favCharValue = favChar.editText?.text.toString()
+            val costValue = cost.editText?.text.toString()
 
-            if (titleValue.isEmpty() && authorValue.isEmpty()) {
+            // Perform input validation
+            if (titleValue.isEmpty() || authorValue.isEmpty()) {
                 Toast.makeText(context, "Please enter title and author", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val data = BookData(0, titleValue, authorValue, statusValue)
+            // Create a new BookData object and pass it to the listener
+            val data = BookData(bookData?.id ?: 0, titleValue, authorValue, statusValue, "", "", ratingValue.toInt(), favCharValue, costValue.toFloat(), false, false)
             addBookDialogListener.onAddButtonClicked(data)
             dismiss()
         }
-
-    }
-
-    private fun initViews() {
-        btnAdd = findViewById(R.id.btnAddEditBook)
-        btnClose = findViewById(R.id.ibCloseBookDialog)
-        title = findViewById(R.id.tiTitle)
-        author = findViewById(R.id.tiAuthor)
-        status = findViewById(R.id.spStatus)
-        startDate = findViewById(R.id.ibStartDate)
-        endDate = findViewById(R.id.ibEndDate)
-        rating = findViewById(R.id.tiRating)
-        favChar = findViewById(R.id.tiFavChar)
-        cost = findViewById(R.id.tiCost)
 
     }
 }

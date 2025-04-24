@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Configure click listeners for all books button
         val btnAllBooks : Button = findViewById(R.id.btnAllBooks)
         btnAllBooks.setOnClickListener {
             val intent = Intent(this, BooksActivity::class.java)

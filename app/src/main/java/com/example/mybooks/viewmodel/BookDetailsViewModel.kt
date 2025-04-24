@@ -2,6 +2,8 @@ package com.example.mybooks.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.mybooks.database.AppDatabase
 import com.example.mybooks.database.model.BookData
@@ -11,22 +13,20 @@ import kotlinx.coroutines.launch
 
 class BookDetailsViewModel(application: Application): AndroidViewModel(application) {
     private val bookRepository: BookRepository
-    var book: BookData? = null
+    lateinit var book: LiveData<BookData>
 
     init {
         val bookDao = AppDatabase.getDatabase(application).bookDao()
         bookRepository = BookRepository(bookDao)
     }
 
-    fun getBookById(id: Int) {
+    fun getBookById(id: Long) {
         book = bookRepository.getBookById(id)
     }
 
-    fun setIsFavorite(isFavorite: Boolean) {
+    fun setIsFavorite(id: Int, isFavorite: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            book?.let {
-                bookRepository.setIsFavorite(it.id.toInt(), isFavorite)
-            }
+            bookRepository.setIsFavorite(id, isFavorite)
         }
     }
 

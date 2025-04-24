@@ -5,4 +5,5 @@ import com.example.mybooks.database.model.BookData
 interface BookDialogListener {
 
     fun onAddButtonClicked(bookData: BookData)
+
 }

@@ -19,7 +19,6 @@ class BooksViewModel(application: Application): AndroidViewModel(application) {
         bookRepository = BookRepository(bookDao)
 
         books = bookRepository.getAllBooks()
-
     }
 
     fun addBook(bookData: BookData){

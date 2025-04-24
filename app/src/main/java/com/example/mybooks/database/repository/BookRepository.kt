@@ -7,7 +7,7 @@ import com.example.mybooks.database.model.BookData
 class BookRepository(private val bookDao: BookDao) {
     fun getAllBooks(): LiveData<List<BookData>> = bookDao.getAll()
 
-    fun getBookById(id: Int): BookData = bookDao.getById(id)
+    fun getBookById(id: Long): LiveData<BookData> = bookDao.getById(id)
 
     fun addBook(book: BookData){
         bookDao.insert(book)
