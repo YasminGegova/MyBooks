@@ -25,9 +25,10 @@
     <string name="choose_end_date">Choose end date</string>
     <string name="choose_start_date">Choose start date</string>
     <string name="enter_book_rating">Enter book rating</string>
-    <string name="enter_cost">Enter boos cost</string>
+    <string name="enter_cost">Enter book cost</string>
     <string name="enter_fav_character">Enter fav. character</string>
     <string name="add_button">Add</string>
+    <string name="edit_button">Edit</string>
     <string name="enter_quote">Enter quote</string>
     <string-array name="book_status">
         <item>New</item>
