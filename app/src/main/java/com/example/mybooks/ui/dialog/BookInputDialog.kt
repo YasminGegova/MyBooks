@@ -1,5 +1,6 @@
 package com.example.mybooks.ui.dialog
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -10,10 +11,14 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import com.example.mybooks.R
 import com.example.mybooks.database.model.BookData
 import com.google.android.material.textfield.TextInputLayout
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class BookInputDialog(context: Context,
                       private val isEdit: Boolean,
@@ -39,6 +44,8 @@ class BookInputDialog(context: Context,
         val rating: TextInputLayout = findViewById(R.id.tiRating)
         val favChar: TextInputLayout = findViewById(R.id.tiFavChar)
         val cost: TextInputLayout = findViewById(R.id.tiCost)
+        var tvStartDate: TextView = findViewById(R.id.tvStartDateInput)
+        val tvEndDate: TextView = findViewById(R.id.tvEndDateInput)
 
         // Set up the spinner
         ArrayAdapter.createFromResource(
@@ -61,6 +68,47 @@ class BookInputDialog(context: Context,
             }
         }
 
+        var startDateValue = ""
+        var endDateValue = ""
+
+        // Set up the start date
+        startDate.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val datePickerDialog = DatePickerDialog(
+                context,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    calendar.set(selectedYear, selectedMonth, selectedDay)
+                    val myFormat = "dd/MM/yyyy" // mention the format you need
+                    val sdf = SimpleDateFormat(myFormat, Locale.US)
+                    startDateValue = sdf.format(calendar.time)
+                    tvStartDate.text= startDateValue
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            datePickerDialog.show()
+        }
+
+        // Set up the end date
+        endDate.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val datePickerDialog = DatePickerDialog(
+                context,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    calendar.set(selectedYear, selectedMonth, selectedDay)
+                    val myFormat = "dd/MM/yyyy" // mention the format you need
+                    val sdf = SimpleDateFormat(myFormat, Locale.US)
+                    endDateValue = sdf.format(calendar.time)
+                    tvEndDate.text = endDateValue
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            datePickerDialog.show()
+        }
+
         // Set up the close button
         btnClose.setOnClickListener{
             dismiss()
@@ -80,7 +128,16 @@ class BookInputDialog(context: Context,
                 -1 -> status.setSelection(typeOptions.indexOf("New"))
                 else -> status.setSelection(typeIndex)
             }
-
+            // Set up the start and end dates
+            startDateValue = bookData?.startDate.toString()
+            if (startDateValue != "") {
+                tvStartDate.text = startDateValue
+            }
+            endDateValue = bookData?.endDate.toString()
+            if (endDateValue != "") {
+                tvEndDate.text = endDateValue
+            }
+            // Set up the rating, favorite character, and cost
             rating.editText?.setText(bookData?.rating.toString())
             favChar.editText?.setText(bookData?.favChar)
             cost.editText?.setText(bookData?.cost.toString())
@@ -103,7 +160,7 @@ class BookInputDialog(context: Context,
             }
 
             // Create a new BookData object and pass it to the listener
-            val data = BookData(bookData?.id ?: 0, titleValue, authorValue, statusValue, "", "", ratingValue.toInt(), favCharValue, costValue.toFloat(), false, false)
+            val data = BookData(bookData?.id ?: 0, titleValue, authorValue, statusValue, startDateValue, endDateValue, ratingValue.toInt(), favCharValue, costValue.toFloat(), false, false)
             addBookDialogListener.onAddButtonClicked(data)
             dismiss()
         }

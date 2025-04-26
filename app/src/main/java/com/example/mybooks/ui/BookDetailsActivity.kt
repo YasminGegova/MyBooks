@@ -5,17 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.mybooks.R
-import com.example.mybooks.database.model.BookData
-import com.example.mybooks.ui.adapter.BooksAdapter
 import com.example.mybooks.viewmodel.BookDetailsViewModel
-import com.example.mybooks.viewmodel.BooksViewModel
 
 class BookDetailsActivity : AppCompatActivity() {
-
-    private lateinit var book: BookData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +29,22 @@ class BookDetailsActivity : AppCompatActivity() {
         val tvRating: TextView = findViewById(R.id.tvRating)
         val tvFavChar: TextView = findViewById(R.id.tvFavChar)
         val tvCost: TextView = findViewById(R.id.tvCost)
+        val tbFavorite: ToggleButton = findViewById(R.id.tbFavorite)
+
+
 
         // Get the ID from the intent
         val intent = intent
         val extras = intent.extras
         val id = extras?.getLong("ID")
+
+        tbFavorite.setOnClickListener {
+            if (tbFavorite.isChecked) {
+                bookDetailsViewModel.setIsFavorite(id!!, true)
+            } else {
+                bookDetailsViewModel.setIsFavorite(id!!, false)
+            }
+        }
 
         // Get the book from the database
         bookDetailsViewModel.getBookById(id!!)
@@ -52,6 +59,7 @@ class BookDetailsActivity : AppCompatActivity() {
             tvRating.text = it.rating.toString()
             tvFavChar.text = it.favChar
             tvCost.text = it.cost.toString()
+            tbFavorite.isChecked = it.isFavorite
         }
 
         // Configure click listener for the "Back" button
@@ -65,6 +73,14 @@ class BookDetailsActivity : AppCompatActivity() {
         btnQuotes.setOnClickListener {
             val intent = Intent(this, QuotesActivity::class.java)
             startActivity(intent)
+        }
+
+        // Configure click listener for the "Delete" button
+        val ibDelete: Button = findViewById(R.id.btnDelete)
+        ibDelete.setOnClickListener {
+            bookDetailsViewModel.book.removeObservers(this)
+            bookDetailsViewModel.deleteBook(bookDetailsViewModel.book.value!!)
+            finish()
         }
     }
 }

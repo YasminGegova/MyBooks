@@ -24,7 +24,7 @@ class BookDetailsViewModel(application: Application): AndroidViewModel(applicati
         book = bookRepository.getBookById(id)
     }
 
-    fun setIsFavorite(id: Int, isFavorite: Boolean) {
+    fun setIsFavorite(id: Long, isFavorite: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             bookRepository.setIsFavorite(id, isFavorite)
         }

@@ -19,7 +19,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiTitle"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
@@ -43,7 +43,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiAuthor"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
@@ -67,7 +67,7 @@
 
     <LinearLayout
         android:id="@+id/llStatusInput"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
@@ -92,7 +92,7 @@
 
         <Spinner
             android:id="@+id/spStatus"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/black"
             android:dropDownWidth="wrap_content"
@@ -103,7 +103,7 @@
 
     <LinearLayout
         android:id="@+id/llStartDate"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
@@ -136,7 +136,7 @@
 
     <LinearLayout
         android:id="@+id/llEndDate"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
@@ -168,7 +168,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiRating"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
@@ -192,7 +192,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiFavChar"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
@@ -216,7 +216,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiCost"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
