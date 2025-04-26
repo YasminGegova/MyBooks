@@ -66,8 +66,6 @@ class BooksAdapter(private var books: List<BookData>, private val activity: Book
             intent.putExtras(extras)
             holder.itemView.context.startActivity(intent)
         }
-
-
     }
 
     fun updateDataSet(books: List<BookData>?) {

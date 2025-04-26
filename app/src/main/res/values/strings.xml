@@ -21,7 +21,7 @@
     <string name="add_quote">Add quote</string>
     <string name="enter_book_title">Enter book title</string>
     <string name="enter_book_author">Enter book author</string>
-    <string name="choose_book_status">Choose book status</string>
+    <string name="choose_book_status">Choose status</string>
     <string name="choose_end_date">Choose end date</string>
     <string name="choose_start_date">Choose start date</string>
     <string name="enter_book_rating">Enter book rating</string>

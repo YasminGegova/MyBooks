@@ -3,6 +3,7 @@ package com.example.mybooks.ui
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,23 +15,40 @@ import com.example.mybooks.ui.decorator.BookItemDecorator
 import com.example.mybooks.ui.dialog.BookDialogListener
 import com.example.mybooks.ui.dialog.BookInputDialog
 import com.example.mybooks.viewmodel.BooksViewModel
+import com.example.mybooks.viewmodel.factory.BooksViewModelFactory
 
 
 class BooksActivity : AppCompatActivity() {
 
     private lateinit var books: List<BookData>
-
     private lateinit var bookViewModel: BooksViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
+        // Get the ID from the intent
+        val intent = intent
+        val extras = intent.extras
+        val activityType = extras?.getString("ACTIVITY_TYPE")
+
+        val recyclerView: RecyclerView = findViewById(R.id.rvAllBooks)
+        val tvActivityName: TextView = findViewById(R.id.tvAllBooks)
+        val btnAddBook: Button = findViewById(R.id.btnAddBook)
+        val ibBack: ImageButton = findViewById(R.id.ibBack)
+
         // Initialize the ViewModel
-        bookViewModel = ViewModelProvider(this)[BooksViewModel::class.java]
+        bookViewModel = ViewModelProvider(this, BooksViewModelFactory(application, activityType!!))[BooksViewModel::class.java]
+
+        if (activityType == resources.getString(R.string.favorites)) {
+            tvActivityName.text = getString(R.string.favorites)
+            btnAddBook.visibility = Button.INVISIBLE
+        } else if (activityType == resources.getString(R.string.wish_list)) {
+            btnAddBook.visibility = Button.INVISIBLE
+            tvActivityName.text = getString(R.string.wish_list)
+        }
 
         // Initialize the RecyclerView
-        val recyclerView: RecyclerView = findViewById(R.id.rvAllBooks)
         books = emptyList()
         recyclerView.layoutManager = LinearLayoutManager(this)
         val bookItemDecorator = BookItemDecorator(32)
@@ -38,12 +56,13 @@ class BooksActivity : AppCompatActivity() {
         recyclerView.adapter = BooksAdapter(books, this)
 
         // Observe the LiveData from the ViewModel
-        bookViewModel.books.observe(this) {
-            (recyclerView.adapter as BooksAdapter).updateDataSet(it)
+        bookViewModel.books.observe(this) { books ->
+            books.let {
+                (recyclerView.adapter as BooksAdapter).updateDataSet(it)
+            }
         }
 
         // Configure click listener for the "Add Book" button
-        val btnAddBook: Button = findViewById(R.id.btnAddBook)
         btnAddBook.setOnClickListener {
             BookInputDialog(this,
                 false,
@@ -56,7 +75,6 @@ class BooksActivity : AppCompatActivity() {
         }
 
         // Configure click listener for the "Back" button
-        val ibBack: ImageButton = findViewById(R.id.ibBack)
         ibBack.setOnClickListener {
             finish()
         }
