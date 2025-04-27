@@ -34,4 +34,7 @@ interface QuoteDao {
 
     @Query("UPDATE Quote SET isFavorite = :favorite WHERE id = :id")
     fun setIsFavorite(id: Long, favorite: Boolean)
+
+    @Query("SELECT content FROM Quote WHERE bookId = :bookId AND isFavorite = 1")
+    fun getFavoriteQuote(bookId: Long): String
 }

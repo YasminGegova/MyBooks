@@ -27,4 +27,8 @@ class QuoteRepository(private val quoteDao: QuoteDao) {
         quoteDao.clearFavorite()
         quoteDao.setIsFavorite(id, favorite)
     }
+
+    fun getFavoriteQuote(bookId: Long): String {
+        return quoteDao.getFavoriteQuote(bookId)
+    }
 }
