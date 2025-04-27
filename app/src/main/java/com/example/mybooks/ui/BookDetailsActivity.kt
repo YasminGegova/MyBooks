@@ -15,12 +15,15 @@ import com.example.mybooks.viewmodel.BookDetailsViewModel
 
 class BookDetailsActivity : AppCompatActivity() {
 
+    private lateinit var bookDetailsViewModel: BookDetailsViewModel
+    private var bookId: Long? = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
         // Initialize the ViewModel
-        val bookDetailsViewModel = ViewModelProvider(this)[BookDetailsViewModel::class.java]
+        bookDetailsViewModel = ViewModelProvider(this)[BookDetailsViewModel::class.java]
 
         // Initialize the views
         val tvTitle: TextView = findViewById(R.id.tvTitle)
@@ -32,28 +35,26 @@ class BookDetailsActivity : AppCompatActivity() {
         val tvFavChar: TextView = findViewById(R.id.tvFavChar)
         val tvCost: TextView = findViewById(R.id.tvCost)
         val tbFavorite: ToggleButton = findViewById(R.id.tbFavorite)
-
-        var bookId: Long = 0
+        var tvFavQuote: TextView = findViewById(R.id.tvFavQuote)
 
         // Get the ID from the intent
         val intent = intent
         val extras = intent.extras
-        val id = extras?.getLong("ID")
+        bookId = extras?.getLong("ID")
 
         tbFavorite.setOnClickListener {
             if (tbFavorite.isChecked) {
-                bookDetailsViewModel.setIsFavorite(id!!, true)
+                bookDetailsViewModel.setIsFavorite(bookId!!, true)
             } else {
-                bookDetailsViewModel.setIsFavorite(id!!, false)
+                bookDetailsViewModel.setIsFavorite(bookId!!, false)
             }
         }
 
         // Get the book from the database
-        bookDetailsViewModel.getBookById(id!!)
+        bookDetailsViewModel.getBookById(bookId!!)
 
         // Observe the LiveData from the ViewModel
         bookDetailsViewModel.book.observe(this) {
-            bookId = it.id
             tvTitle.text = it.title
             tvAuthor.text = it.author
             tvStatus.text = it.status
@@ -63,6 +64,10 @@ class BookDetailsActivity : AppCompatActivity() {
             tvFavChar.text = it.favChar
             tvCost.text = it.cost.toString()
             tbFavorite.isChecked = it.isFavorite
+        }
+
+        bookDetailsViewModel.favoriteQuote.observe(this) {
+            tvFavQuote.text = it
         }
 
         // Configure click listener for the "Back" button
@@ -96,5 +101,10 @@ class BookDetailsActivity : AppCompatActivity() {
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bookDetailsViewModel.getFavoriteQuote(bookId!!)
     }
 }

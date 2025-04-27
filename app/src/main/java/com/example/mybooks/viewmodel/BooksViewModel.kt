@@ -31,6 +31,7 @@ class BooksViewModel(application: Application, private val activityType: String)
                 bookRepository.getAllBooks()
             }
         }
+
     }
 
     fun addBook(bookData: BookData){
