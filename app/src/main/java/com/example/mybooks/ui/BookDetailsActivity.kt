@@ -1,5 +1,7 @@
 package com.example.mybooks.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -31,7 +33,7 @@ class BookDetailsActivity : AppCompatActivity() {
         val tvCost: TextView = findViewById(R.id.tvCost)
         val tbFavorite: ToggleButton = findViewById(R.id.tbFavorite)
 
-
+        var bookId: Long = 0
 
         // Get the ID from the intent
         val intent = intent
@@ -51,6 +53,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
         // Observe the LiveData from the ViewModel
         bookDetailsViewModel.book.observe(this) {
+            bookId = it.id
             tvTitle.text = it.title
             tvAuthor.text = it.author
             tvStatus.text = it.status
@@ -71,16 +74,27 @@ class BookDetailsActivity : AppCompatActivity() {
         // Configure click listener for the "Quotes" button
         val btnQuotes: Button = findViewById(R.id.btnQuotes)
         btnQuotes.setOnClickListener {
-            val intent = Intent(this, QuotesActivity::class.java)
-            startActivity(intent)
+            val intentQuotes = Intent(this, QuotesActivity::class.java)
+            intentQuotes.putExtra("BOOK_ID", bookId)
+            startActivity(intentQuotes)
         }
 
         // Configure click listener for the "Delete" button
         val ibDelete: Button = findViewById(R.id.btnDelete)
         ibDelete.setOnClickListener {
-            bookDetailsViewModel.book.removeObservers(this)
-            bookDetailsViewModel.deleteBook(bookDetailsViewModel.book.value!!)
-            finish()
+            AlertDialog.Builder(this)
+                .setTitle("Delete book")
+                .setMessage("Are you sure you want to delete this book?")
+
+                .setPositiveButton(android.R.string.ok
+                ) { _: DialogInterface, _: Int ->
+                    bookDetailsViewModel.book.removeObservers(this)
+                    bookDetailsViewModel.deleteBook(bookDetailsViewModel.book.value!!)
+                    finish()
+                } // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.cancel, null)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
+                .show()
         }
     }
 }

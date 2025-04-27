@@ -15,7 +15,10 @@ interface QuoteDao {
     fun getAll(): LiveData<List<QuoteData>>
 
     @Query("SELECT * FROM Quote WHERE id = :id")
-    fun getById(id: Int): QuoteData
+    fun getById(id: Long): QuoteData
+
+    @Query("SELECT * FROM Quote WHERE bookId = :id")
+    fun getQuoteByBookId(id: Long): LiveData<List<QuoteData>>
 
     @Insert
     fun insert(quote: QuoteData)
@@ -30,5 +33,5 @@ interface QuoteDao {
     fun clearFavorite()
 
     @Query("UPDATE Quote SET isFavorite = :favorite WHERE id = :id")
-    fun setIsFavorite(id: Int, favorite: Boolean)
+    fun setIsFavorite(id: Long, favorite: Boolean)
 }

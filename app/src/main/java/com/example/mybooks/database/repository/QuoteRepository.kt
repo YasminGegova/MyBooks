@@ -7,7 +7,9 @@ import com.example.mybooks.database.model.QuoteData
 class QuoteRepository(private val quoteDao: QuoteDao) {
     fun getAllQuotes(): LiveData<List<QuoteData>> = quoteDao.getAll()
 
-    fun getQuoteById(id: Int): QuoteData = quoteDao.getById(id)
+    fun getQuoteById(id: Long): QuoteData = quoteDao.getById(id)
+
+    fun getQuoteByBookId(id: Long): LiveData<List<QuoteData>> = quoteDao.getQuoteByBookId(id)
 
     fun addQuote(quote: QuoteData){
         quoteDao.insert(quote)
@@ -21,7 +23,7 @@ class QuoteRepository(private val quoteDao: QuoteDao) {
         quoteDao.delete(quote)
     }
 
-    fun setIsFavorite(id: Int, favorite: Boolean) {
+    fun setIsFavorite(id: Long, favorite: Boolean) {
         quoteDao.clearFavorite()
         quoteDao.setIsFavorite(id, favorite)
     }

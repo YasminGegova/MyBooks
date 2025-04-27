@@ -15,6 +15,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ToggleButton
+                android:id="@+id/tbAddToFav"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/favorite_selector"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textOff=""
+                android:textOn=""/>
+
             <TextView
                 android:id="@+id/tvQuote"
                 android:layout_width="0dp"
@@ -30,19 +42,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ibAddToFav" />
-
-            <ImageButton
-                android:id="@+id/ibAddToFav"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#00FFFFFF"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/favorite_selector"
-                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                app:layout_constraintTop_toBottomOf="@+id/tbAddToFav" />
 
             <ImageButton
                 android:id="@+id/ibRemove"

@@ -32,10 +32,11 @@ class BookInputDialog(context: Context,
         setContentView(R.layout.book_dialog)
 
         var statusValue= ""
+        var isFavorite = false
 
         // Initialize views
         val btnAdd: Button = findViewById(R.id.btnAddEditBook)
-        val btnClose: ImageButton = findViewById(R.id.ibCloseBookDialog)
+        val btnClose: ImageButton = findViewById(R.id.ibClose)
         val title: TextInputLayout = findViewById(R.id.tiTitle)
         val author: TextInputLayout = findViewById(R.id.tiAuthor)
         val status: Spinner = findViewById(R.id.spStatus)
@@ -141,7 +142,7 @@ class BookInputDialog(context: Context,
             rating.editText?.setText(bookData?.rating.toString())
             favChar.editText?.setText(bookData?.favChar)
             cost.editText?.setText(bookData?.cost.toString())
-
+            isFavorite = bookData!!.isFavorite
         }
 
         // Set up Add/Edit Button
@@ -160,7 +161,7 @@ class BookInputDialog(context: Context,
             }
 
             // Create a new BookData object and pass it to the listener
-            val data = BookData(bookData?.id ?: 0, titleValue, authorValue, statusValue, startDateValue, endDateValue, ratingValue.toInt(), favCharValue, costValue.toFloat(), false, false)
+            val data = BookData(bookData?.id ?: 0, titleValue, authorValue, statusValue, startDateValue, endDateValue, ratingValue.toInt(), favCharValue, costValue.toFloat(), isFavorite, false)
             addBookDialogListener.onAddButtonClicked(data)
             dismiss()
         }
