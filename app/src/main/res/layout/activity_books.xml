@@ -31,7 +31,7 @@
         android:background="#00FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_arrow_icon"
+        app:srcCompat="@drawable/back_arrow_icons8"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView

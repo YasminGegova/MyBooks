@@ -25,7 +25,7 @@
                 android:background="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/book_icon"
+                app:srcCompat="@drawable/book_icons8"
                 tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
             <ImageButton
@@ -37,7 +37,7 @@
                 android:background="#00FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/edit_book_icon"
+                app:srcCompat="@drawable/edit_book_icons8"
                 tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
             <LinearLayout
