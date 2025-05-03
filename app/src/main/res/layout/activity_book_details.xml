@@ -86,7 +86,7 @@
 
         <TextView
             android:id="@+id/tvStatusLabel"
-            android:layout_width="164dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
             android:text="@string/status"
@@ -106,7 +106,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llStartDate"
+        android:id="@+id/llCreatedDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -119,16 +119,16 @@
         app:layout_constraintTop_toBottomOf="@+id/llStatus">
 
         <TextView
-            android:id="@+id/tvStartDateLabel"
-            android:layout_width="164dp"
+            android:id="@+id/tvCreatedDateLabel"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
-            android:text="@string/start_date"
+            android:text="@string/created_date"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tvStartDate"
+            android:id="@+id/tvCreatedDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
@@ -139,7 +139,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llEndDate"
+        android:id="@+id/llStatusChangedDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -149,19 +149,19 @@
         android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llStartDate">
+        app:layout_constraintTop_toBottomOf="@+id/llCreatedDate">
 
         <TextView
-            android:id="@+id/tvEndDateLabel"
-            android:layout_width="164dp"
+            android:id="@+id/tvStatusChangedDateLabel"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
-            android:text="@string/end_date"
+            android:text="@string/status_changed_date"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tvEndDate"
+            android:id="@+id/tvStatusChangedDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
@@ -182,11 +182,11 @@
         android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llEndDate">
+        app:layout_constraintTop_toBottomOf="@+id/llStatusChangedDate">
 
         <TextView
             android:id="@+id/tvRatingLabel"
-            android:layout_width="164dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
             android:text="@string/rating"
@@ -219,7 +219,7 @@
 
         <TextView
             android:id="@+id/tvFavCharLabel"
-            android:layout_width="164dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
             android:text="@string/fav_character"
@@ -253,7 +253,7 @@
 
         <TextView
             android:id="@+id/tvCostLabel"
-            android:layout_width="164dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
             android:text="@string/cost"
@@ -286,7 +286,7 @@
 
         <TextView
             android:id="@+id/tvFavQuoteLabel"
-            android:layout_width="164dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kavivanar"
             android:text="@string/favorite_quote"

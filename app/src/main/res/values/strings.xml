@@ -9,8 +9,8 @@
     <string name="status">Status:</string>
     <string name="book_title">Book title:</string>
     <string name="author">Author:</string>
-    <string name="start_date">Start date:</string>
-    <string name="end_date">End date:</string>
+    <string name="created_date">Created date:</string>
+    <string name="status_changed_date">Status changed date:</string>
     <string name="rating">Rating:</string>
     <string name="fav_character">Fav. Character:</string>
     <string name="cost">Cost:</string>
@@ -22,10 +22,8 @@
     <string name="enter_book_title">Enter book title</string>
     <string name="enter_book_author">Enter book author</string>
     <string name="choose_book_status">Choose status</string>
-    <string name="choose_end_date">Choose end date</string>
-    <string name="choose_start_date">Choose start date</string>
-    <string name="enter_book_rating">Enter book rating</string>
-    <string name="enter_cost">Enter book cost</string>
+    <string name="enter_book_rating">Enter book rating (1 – 10)</string>
+    <string name="enter_cost">Enter book cost in BGN</string>
     <string name="enter_fav_character">Enter fav. character</string>
     <string name="add_button">Add</string>
     <string name="edit_button">Edit</string>
