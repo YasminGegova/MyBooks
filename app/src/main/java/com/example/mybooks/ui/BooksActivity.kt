@@ -50,7 +50,10 @@ class BooksActivity : AppCompatActivity() {
 
         // Initialize the RecyclerView
         books = emptyList()
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.reverseLayout = true
+        layoutManager.stackFromEnd = true
+        recyclerView.layoutManager = layoutManager
         val bookItemDecorator = BookItemDecorator(32)
         recyclerView.addItemDecoration(bookItemDecorator)
         recyclerView.adapter = BooksAdapter(books, this)
@@ -59,6 +62,7 @@ class BooksActivity : AppCompatActivity() {
         bookViewModel.books.observe(this) { books ->
             books.let {
                 (recyclerView.adapter as BooksAdapter).updateDataSet(it)
+                recyclerView.scrollToPosition(books.lastIndex)
             }
         }
 
