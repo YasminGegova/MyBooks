@@ -9,12 +9,11 @@ data class BookData(
     val title: String,
     val author: String,
     val status: String,
-    val startDate: String,
-    val endDate: String,
+    val createdDate: String,
+    val statusChangedDate: String,
     val rating: Int,
     val favChar: String,
     val cost: Float,
-    val isFavorite: Boolean,
-    val isInWishList: Boolean) {
+    val isFavorite: Boolean) {
 
 }

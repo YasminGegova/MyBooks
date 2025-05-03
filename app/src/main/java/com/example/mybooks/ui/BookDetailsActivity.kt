@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.mybooks.R
 import com.example.mybooks.viewmodel.BookDetailsViewModel
+import java.util.Locale
 
 class BookDetailsActivity : AppCompatActivity() {
 
@@ -29,8 +30,8 @@ class BookDetailsActivity : AppCompatActivity() {
         val tvTitle: TextView = findViewById(R.id.tvTitle)
         val tvAuthor: TextView = findViewById(R.id.tvAuthor)
         val tvStatus: TextView = findViewById(R.id.tvStatus)
-        val tvStartDate: TextView = findViewById(R.id.tvStartDate)
-        val tvEndDate: TextView = findViewById(R.id.tvEndDate)
+        val tvCreatedDate: TextView = findViewById(R.id.tvCreatedDate)
+        val tvStatusChangedDate: TextView = findViewById(R.id.tvStatusChangedDate)
         val tvRating: TextView = findViewById(R.id.tvRating)
         val tvFavChar: TextView = findViewById(R.id.tvFavChar)
         val tvCost: TextView = findViewById(R.id.tvCost)
@@ -58,11 +59,11 @@ class BookDetailsActivity : AppCompatActivity() {
             tvTitle.text = it.title
             tvAuthor.text = it.author
             tvStatus.text = it.status
-            tvStartDate.text = it.startDate
-            tvEndDate.text = it.endDate
-            tvRating.text = it.rating.toString()
+            tvCreatedDate.text = it.createdDate
+            tvStatusChangedDate.text = it.statusChangedDate
+            tvRating.text = String.format(Locale.getDefault(),"%d/10", it.rating)
             tvFavChar.text = it.favChar
-            tvCost.text = it.cost.toString()
+            tvCost.text = String.format(Locale.US,"%.2f BGN", it.cost)
             tbFavorite.isChecked = it.isFavorite
         }
 
