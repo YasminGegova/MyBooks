@@ -42,7 +42,10 @@ class QuotesActivity : AppCompatActivity() {
         quoteViewModel = ViewModelProvider(this, QuotesViewModelFactory(application, bookId))[QuotesViewModel::class.java]
 
         quotes = emptyList()
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.reverseLayout = true
+        layoutManager.stackFromEnd = true
+        recyclerView.layoutManager = layoutManager
         val bookItemDecorator = BookItemDecorator(32)
         recyclerView.addItemDecoration(bookItemDecorator)
         recyclerView.adapter = QuotesAdapter(quotes, this)
@@ -50,6 +53,7 @@ class QuotesActivity : AppCompatActivity() {
         quoteViewModel.quotes.observe(this) { quotes ->
             quotes.let {
                 (recyclerView.adapter as QuotesAdapter).updateDataSet(it)
+                recyclerView.scrollToPosition(quotes.lastIndex)
             }
         }
 
