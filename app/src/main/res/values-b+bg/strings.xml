@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyBooks</string>
+    <string name="home">My Books</string>
+    <string name="main_quote">\"Науката е светилото на един народ, литературата е животът му."\" – Иван Вазов</string>
+    <string name="all_books">Всички книги</string>
+    <string name="wish_list">Списък с желания</string>
+    <string name="favorites">Любими</string>
+    <string name="book">Книга</string>
+    <string name="status">Статус:</string>
+    <string name="book_title">Заглавие:</string>
+    <string name="author">Автор:</string>
+    <string name="created_date">Дата на създаване:</string>
+    <string name="status_changed_date">Дата на промяна:</string>
+    <string name="rating">Оценка:</string>
+    <string name="fav_character">Любим герой:</string>
+    <string name="cost">Цена:</string>
+    <string name="favorite_quote">Любим цитат:</string>
+    <string name="quotes">Цитати</string>
+    <string name="delete">Изтриване</string>
+    <string name="add_new_book">Добави книга</string>
+    <string name="add_quote">Добави цитат</string>
+    <string name="enter_book_title">Въведи заглавие</string>
+    <string name="enter_book_author">Въведи автор</string>
+    <string name="choose_book_status">Избери статус</string>
+    <string name="enter_book_rating">Въведи оценка (1 – 10)</string>
+    <string name="enter_cost">Въведи цена в лева</string>
+    <string name="enter_fav_character">Въведи любим герой</string>
+    <string name="add_button">Добавяне</string>
+    <string name="edit_button">Редактиране</string>
+    <string name="enter_quote">Въведи цитат</string>
+    <string-array name="book_status">
+        <item>Нова</item>
+        <item>Четене</item>
+        <item>Прочетена</item>
+        <item>Списък с желания</item>
+        <item>Отказана</item>
+    </string-array>
+</resources>

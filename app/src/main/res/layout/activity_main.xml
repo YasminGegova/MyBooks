@@ -90,10 +90,8 @@
     <Switch
         android:id="@+id/sLanguage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="4dp"
-        android:checked="false"
         android:thumb="@drawable/custom_thumb"
         android:track="@drawable/custom_track"
         app:layout_constraintBottom_toBottomOf="@+id/tvHome"

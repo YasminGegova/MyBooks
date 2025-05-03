@@ -11,7 +11,7 @@
                         android:height="36dp"/>
                 </shape>
             </item>
-            <item android:drawable="@drawable/uk_flag" android:gravity="right" android:width="36dp" android:height="36dp"/>
+            <item android:drawable="@drawable/bulgarian_flag" android:gravity="right" android:width="36dp" android:height="36dp"/>
         </layer-list>
     </item>
 
@@ -26,7 +26,7 @@
                         android:height="36dp"/>
                 </shape>
             </item>
-            <item android:drawable="@drawable/bulgarian_flag" android:gravity="right" android:width="36dp" android:height="36dp"/>
+            <item android:drawable="@drawable/uk_flag" android:gravity="right" android:width="36dp" android:height="36dp"/>
         </layer-list>
     </item>
 </selector>
