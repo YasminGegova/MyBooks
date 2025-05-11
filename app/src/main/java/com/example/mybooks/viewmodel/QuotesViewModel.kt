@@ -10,7 +10,7 @@ import com.example.mybooks.database.repository.QuoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class QuotesViewModel(application: Application, private val bookId: Long): AndroidViewModel(application) {
+class QuotesViewModel(application: Application, bookId: Long): AndroidViewModel(application) {
     private val quoteRepository: QuoteRepository
     var quotes: LiveData<List<QuoteData>>
 

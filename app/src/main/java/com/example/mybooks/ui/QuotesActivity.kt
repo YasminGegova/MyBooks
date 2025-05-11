@@ -4,22 +4,16 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mybooks.R
-import com.example.mybooks.database.model.BookData
 import com.example.mybooks.database.model.QuoteData
 import com.example.mybooks.ui.adapter.QuotesAdapter
 import com.example.mybooks.ui.decorator.BookItemDecorator
-import com.example.mybooks.ui.dialog.BookInputDialog
-import com.example.mybooks.ui.dialog.BookDialogListener
 import com.example.mybooks.ui.dialog.QuoteDialogListener
 import com.example.mybooks.ui.dialog.QuoteInputDialog
-import com.example.mybooks.viewmodel.BooksViewModel
 import com.example.mybooks.viewmodel.QuotesViewModel
-import com.example.mybooks.viewmodel.factory.BooksViewModelFactory
 import com.example.mybooks.viewmodel.factory.QuotesViewModelFactory
 
 class QuotesActivity : AppCompatActivity() {

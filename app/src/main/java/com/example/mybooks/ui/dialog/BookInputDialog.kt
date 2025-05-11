@@ -1,6 +1,5 @@
 package com.example.mybooks.ui.dialog
 
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import com.example.mybooks.R
 import com.example.mybooks.database.model.BookData
@@ -35,6 +33,7 @@ class BookInputDialog(context: Context,
         var isFavorite = false
         var createdDateValue = ""
         var statusChangedDateValue = ""
+        val currentStatusValue = bookData?.status
 
         // Initialize views
         val btnAdd: Button = findViewById(R.id.btnAddEditBook)
@@ -60,11 +59,18 @@ class BookInputDialog(context: Context,
         status.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 statusValue = parent?.getItemAtPosition(position).toString()
-                statusChangedDateValue = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time)
+                statusChangedDateValue = if (currentStatusValue != statusValue) {
+                    SimpleDateFormat(
+                        "dd/MM/yyyy",
+                        Locale.US
+                    ).format(Calendar.getInstance().time)
+                } else {
+                    createdDateValue
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                statusValue = "New"
+                statusValue = context.resources.getStringArray(R.array.book_status)[0]
             }
         }
 
@@ -82,10 +88,13 @@ class BookInputDialog(context: Context,
 
             // Set up the spinner for Edit
             val typeOptions = context.resources.getStringArray(R.array.book_status)
-            val currentStatusValue = bookData?.status
             when(val typeIndex = typeOptions.indexOf(currentStatusValue)) {
-                -1 -> status.setSelection(typeOptions.indexOf("New"))
-                else -> status.setSelection(typeIndex)
+                -1 -> {
+                    status.setSelection(0)
+                }
+                else -> {
+                    status.setSelection(typeIndex)
+                }
             }
             // Set up the rating, favorite character, and cost
             rating.editText?.setText(bookData?.rating.toString())

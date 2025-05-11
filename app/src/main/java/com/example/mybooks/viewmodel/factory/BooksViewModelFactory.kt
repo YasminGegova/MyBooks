@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.mybooks.viewmodel.BooksViewModel
 
+@Suppress("UNCHECKED_CAST")
 class BooksViewModelFactory(
     private val application: Application,
     private val activityType: String

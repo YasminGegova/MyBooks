@@ -20,5 +20,4 @@ data class QuoteData(
     val isFavorite: Boolean,
     val bookId: Long
 
-) {
-}
+)
