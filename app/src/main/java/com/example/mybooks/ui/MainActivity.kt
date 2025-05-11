@@ -14,7 +14,7 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
-    private val PREF_LANGUAGE_KEY = "language"
+    private val prefLanguageKey = "language"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,12 +67,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setLanguage(language: String) {
         val editor = sharedPreferences.edit()
-        editor.putString(PREF_LANGUAGE_KEY, language)
+        editor.putString(prefLanguageKey, language)
         editor.apply()
     }
 
     private fun getLanguage(): String {
-        return sharedPreferences.getString(PREF_LANGUAGE_KEY, null) ?: "en"
+        return sharedPreferences.getString(prefLanguageKey, null) ?: "en"
     }
 
     private fun updateLocale(language: String) {

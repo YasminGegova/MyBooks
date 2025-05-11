@@ -5,9 +5,6 @@ import com.example.mybooks.database.dao.QuoteDao
 import com.example.mybooks.database.model.QuoteData
 
 class QuoteRepository(private val quoteDao: QuoteDao) {
-    fun getAllQuotes(): LiveData<List<QuoteData>> = quoteDao.getAll()
-
-    fun getQuoteById(id: Long): QuoteData = quoteDao.getById(id)
 
     fun getQuoteByBookId(id: Long): LiveData<List<QuoteData>> = quoteDao.getQuoteByBookId(id)
 

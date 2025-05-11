@@ -36,7 +36,7 @@ class BookDetailsActivity : AppCompatActivity() {
         val tvFavChar: TextView = findViewById(R.id.tvFavChar)
         val tvCost: TextView = findViewById(R.id.tvCost)
         val tbFavorite: ToggleButton = findViewById(R.id.tbFavorite)
-        var tvFavQuote: TextView = findViewById(R.id.tvFavQuote)
+        val tvFavQuote: TextView = findViewById(R.id.tvFavQuote)
 
         // Get the ID from the intent
         val intent = intent

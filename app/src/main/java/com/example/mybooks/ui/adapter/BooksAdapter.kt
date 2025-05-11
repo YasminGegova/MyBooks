@@ -75,7 +75,5 @@ class BooksAdapter(private var books: List<BookData>, private val activity: Book
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

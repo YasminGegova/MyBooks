@@ -14,6 +14,4 @@ data class BookData(
     val rating: Int,
     val favChar: String,
     val cost: Float,
-    val isFavorite: Boolean) {
-
-}
+    val isFavorite: Boolean)

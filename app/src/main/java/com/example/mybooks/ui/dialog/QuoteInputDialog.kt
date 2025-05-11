@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import com.example.mybooks.R
 import com.example.mybooks.database.model.QuoteData
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class QuoteInputDialog(context: Context,

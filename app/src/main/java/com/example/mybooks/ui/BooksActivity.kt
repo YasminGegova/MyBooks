@@ -58,16 +58,22 @@ class BooksActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(bookItemDecorator)
         recyclerView.adapter = BooksAdapter(books, this)
 
+        var isBookAdded = false
+
         // Observe the LiveData from the ViewModel
         bookViewModel.books.observe(this) { books ->
             books.let {
                 (recyclerView.adapter as BooksAdapter).updateDataSet(it)
-                recyclerView.scrollToPosition(books.lastIndex)
+                if (isBookAdded) {
+                    recyclerView.scrollToPosition(books.lastIndex)
+                    isBookAdded = false
+                }
             }
         }
 
         // Configure click listener for the "Add Book" button
         btnAddBook.setOnClickListener {
+            isBookAdded = true
             BookInputDialog(this,
                 false,
                 null,

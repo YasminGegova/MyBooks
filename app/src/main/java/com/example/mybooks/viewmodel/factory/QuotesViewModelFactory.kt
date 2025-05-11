@@ -1,12 +1,11 @@
 package com.example.mybooks.viewmodel.factory
 
 import android.app.Application
-import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.mybooks.viewmodel.BooksViewModel
 import com.example.mybooks.viewmodel.QuotesViewModel
 
+@Suppress("UNCHECKED_CAST")
 class QuotesViewModelFactory(
     private val application: Application,
     private val bookId: Long

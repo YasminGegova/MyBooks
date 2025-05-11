@@ -81,7 +81,5 @@ class QuotesAdapter(private var quotes: List<QuoteData>, private val activity: Q
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
