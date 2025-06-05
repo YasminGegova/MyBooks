@@ -44,14 +44,21 @@ class QuotesActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(bookItemDecorator)
         recyclerView.adapter = QuotesAdapter(quotes, this)
 
+        var isQuoteAdded = false
+
         quoteViewModel.quotes.observe(this) { quotes ->
             quotes.let {
                 (recyclerView.adapter as QuotesAdapter).updateDataSet(it)
-                recyclerView.scrollToPosition(quotes.lastIndex)
+                if (isQuoteAdded) {
+                    recyclerView.scrollToPosition(quotes.lastIndex)
+                    isQuoteAdded = false
+                }
+
             }
         }
 
         btnAdd.setOnClickListener {
+            isQuoteAdded = true
             QuoteInputDialog(this,
                 false,
                 null,

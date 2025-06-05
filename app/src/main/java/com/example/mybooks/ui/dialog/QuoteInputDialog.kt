@@ -22,6 +22,8 @@ class QuoteInputDialog(context: Context,
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.quote_dialog)
 
+        var isFavorite = false
+
         val btnAdd: Button = findViewById(R.id.btnAddEdit)
         val enteredQuote: TextInputLayout = findViewById(R.id.tiQuote)
         val btnClose: ImageButton = findViewById(R.id.ibClose)
@@ -29,6 +31,7 @@ class QuoteInputDialog(context: Context,
         if (isEdit) {
             btnAdd.text = context.resources.getString(R.string.edit_button)
             enteredQuote.editText?.setText(quoteData?.content)
+            isFavorite = quoteData!!.isFavorite
         }
 
         btnClose.setOnClickListener {
@@ -37,7 +40,7 @@ class QuoteInputDialog(context: Context,
 
         btnAdd.setOnClickListener {
             val quoteValue = enteredQuote.editText?.text.toString()
-            val data = QuoteData(quoteData?.id ?: 0, quoteValue, false, bookId)
+            val data = QuoteData(quoteData?.id ?: 0, quoteValue, isFavorite, bookId)
             addQuoteDialogListener.onAddButtonClicked(data)
             dismiss()
         }
