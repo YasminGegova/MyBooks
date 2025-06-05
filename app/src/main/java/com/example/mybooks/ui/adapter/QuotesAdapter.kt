@@ -41,7 +41,7 @@ class QuotesAdapter(private var quotes: List<QuoteData>, private val activity: Q
             QuoteInputDialog(holder.itemView.context,
                 true,
                 quote,
-                quote.id,
+                quote.bookId,
                 object : QuoteDialogListener {
                     override fun onAddButtonClicked(quoteData: QuoteData) {
                        activity.onUpdateButtonClicked(quoteData)
