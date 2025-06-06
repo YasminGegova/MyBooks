@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         val btnAllBooks : Button = findViewById(R.id.btnAllBooks)
         btnAllBooks.setOnClickListener {
             val intent = Intent(this, BooksActivity::class.java)
-            activityType = application.resources.getString(R.string.all_books)
+            activityType = resources.getString(R.string.all_books)
             intent.putExtra("ACTIVITY_TYPE", activityType)
             startActivity(intent)
         }
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val btnWishList : Button = findViewById(R.id.btnWishList)
         btnWishList.setOnClickListener {
             val intent = Intent(this, BooksActivity::class.java)
-            activityType = application.resources.getString(R.string.wish_list)
+            activityType = resources.getString(R.string.wish_list)
             intent.putExtra("ACTIVITY_TYPE", activityType)
             startActivity(intent)
         }
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         val btnFavorites : Button = findViewById(R.id.btnFavorites)
         btnFavorites.setOnClickListener {
             val intent = Intent(this, BooksActivity::class.java)
-            activityType = application.resources.getString(R.string.favorites)
+            activityType = resources.getString(R.string.favorites)
             intent.putExtra("ACTIVITY_TYPE", activityType)
             startActivity(intent)
         }

@@ -38,14 +38,14 @@ class BooksActivity : AppCompatActivity() {
         val ibBack: ImageButton = findViewById(R.id.ibBack)
 
         // Initialize the ViewModel
-        bookViewModel = ViewModelProvider(this, BooksViewModelFactory(application, activityType!!))[BooksViewModel::class.java]
+        bookViewModel = ViewModelProvider(this, BooksViewModelFactory(this, activityType!!))[BooksViewModel::class.java]
 
         if (activityType == resources.getString(R.string.favorites)) {
-            tvActivityName.text = getString(R.string.favorites)
+            tvActivityName.text = activityType
             btnAddBook.visibility = Button.INVISIBLE
         } else if (activityType == resources.getString(R.string.wish_list)) {
+            tvActivityName.text = activityType
             btnAddBook.visibility = Button.INVISIBLE
-            tvActivityName.text = getString(R.string.wish_list)
         }
 
         // Initialize the RecyclerView

@@ -8,25 +8,25 @@ import com.example.mybooks.R
 import com.example.mybooks.database.AppDatabase
 import com.example.mybooks.database.model.BookData
 import com.example.mybooks.database.repository.BookRepository
+import com.example.mybooks.ui.BooksActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BooksViewModel(application: Application, activityType: String): AndroidViewModel(application) {
+class BooksViewModel(activity: BooksActivity, activityType: String): AndroidViewModel(activity.application) {
     private val bookRepository: BookRepository
     var books: LiveData<List<BookData>>
 
     init {
-        val bookDao = AppDatabase.getDatabase(application).bookDao()
+        val bookDao = AppDatabase.getDatabase(activity).bookDao()
         bookRepository = BookRepository(bookDao)
         books = bookRepository.getAllBooks()
         books = when (activityType) {
-            application.resources.getString(R.string.favorites) -> {
+            activity.resources.getString(R.string.favorites) -> {
                 bookRepository.getFavorites()
             }
-            application.resources.getString(R.string.wish_list) -> {
+            activity.resources.getString(R.string.wish_list) -> {
                 bookRepository.getWishList()
             }
-
             else -> {
                 bookRepository.getAllBooks()
             }
