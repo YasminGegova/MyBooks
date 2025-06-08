@@ -1,6 +1,7 @@
 package com.example.mybooks.viewmodel
 
 import android.app.Application
+import android.content.res.Resources
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -12,19 +13,19 @@ import com.example.mybooks.ui.BooksActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BooksViewModel(activity: BooksActivity, activityType: String): AndroidViewModel(activity.application) {
+class BooksViewModel(application: Application, resources: Resources, activityType: String): AndroidViewModel(application) {
     private val bookRepository: BookRepository
     var books: LiveData<List<BookData>>
 
     init {
-        val bookDao = AppDatabase.getDatabase(activity).bookDao()
+        val bookDao = AppDatabase.getDatabase(application).bookDao()
         bookRepository = BookRepository(bookDao)
         books = bookRepository.getAllBooks()
         books = when (activityType) {
-            activity.resources.getString(R.string.favorites) -> {
+            resources.getString(R.string.favorites) -> {
                 bookRepository.getFavorites()
             }
-            activity.resources.getString(R.string.wish_list) -> {
+            resources.getString(R.string.wish_list) -> {
                 bookRepository.getWishList()
             }
             else -> {

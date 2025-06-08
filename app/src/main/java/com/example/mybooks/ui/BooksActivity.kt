@@ -38,7 +38,7 @@ class BooksActivity : AppCompatActivity() {
         val ibBack: ImageButton = findViewById(R.id.ibBack)
 
         // Initialize the ViewModel
-        bookViewModel = ViewModelProvider(this, BooksViewModelFactory(this, activityType!!))[BooksViewModel::class.java]
+        bookViewModel = ViewModelProvider(this, BooksViewModelFactory(application, resources, activityType!!))[BooksViewModel::class.java]
 
         if (activityType == resources.getString(R.string.favorites)) {
             tvActivityName.text = activityType
